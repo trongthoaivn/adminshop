@@ -297,7 +297,8 @@
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label for="price-edit">Giá bán</label>
-                                        <input type="number" class="form-control required" name="donGia" id="price-edit" th:value="${product.donGia}">
+                                        <input type="text" class="form-control required currency" name="donGia" id="price-edit" th:value="${product.donGia}">
+
                                     </div>
                                 </div>
                                 <div class="form-row" >
@@ -410,7 +411,7 @@
                                 window.location.href = '/admin/product';
                             });
                         }else{
-                            swal("Thất bại!", "Thêm sản phẩm thất bại!", "error");
+                            swal("Thất bại!", data.data, "error");
                         }
                     }
                 });
@@ -437,7 +438,7 @@
                                         window.location.href = '/admin/product';
                                     });
                                 }else{
-                                    swal("Thất bại!", "Xóa sản phẩm thất bại!", "error");
+                                    swal("Thất bại!", data.data, "error");
                                 }
                             }
                         });
@@ -451,6 +452,7 @@
             const urlParams = new URLSearchParams(window.location.search);
             let des = $('#des-data').val();
 
+
             CKEDITOR.replace('description-edit', {
                 height:'500px'
             });
@@ -458,6 +460,7 @@
             $('#id-edit').val(urlParams.get('id'));
             CKEDITOR.instances['description-edit'].setData(decrypt(des));
 
+            // formatCurrency()
 
             $.get("/api/getAllCategory", function (res) {
                 let data = res.data;

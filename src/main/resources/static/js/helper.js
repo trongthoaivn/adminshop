@@ -37,3 +37,37 @@ function decrypt(text){
     var plaintext = bytes.toString(CryptoJS.enc.Utf8);
     return plaintext;
 }
+
+function formatCurrency(){
+    $('.currency').each(function(){
+        if ($(this).val() != '') {
+            let value =$(this).val()
+            let format =  new Intl.NumberFormat();
+            $(this).val(format.formatToParts(value).map(({type, value}) => {
+                switch (type) {
+                    case 'currency':
+                        return '';
+                    default:{
+                        return value;
+                    }
+                }
+            }).reduce((string, part) => string + part));
+        }
+        else if($(this).text() == ''){
+            let value = $(this).text()
+            let format =  new Intl.NumberFormat();
+            $(this).text(format.formatToParts(value).map(({type, value}) => {
+                switch (type) {
+                    case 'currency':
+                        return '';
+                    default:{
+                        return value;
+                    }
+                }
+            }).reduce((string, part) => string + part));
+        }
+
+    });
+
+
+}

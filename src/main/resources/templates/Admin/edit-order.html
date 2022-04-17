@@ -316,11 +316,11 @@
                                         <tr id="rows" th:each="item :${orderDetail}">
                                             <td class="idDetailOrder" th:text="${item.id}"></td>
                                             <td th:text="${item.getMaSanPham().tenSanPham}"></td>
-                                            <td class="donGia" th:text="${item.getMaSanPham().donGia}"></td>
+                                            <td class="donGia currency" th:text="${item.getMaSanPham().donGia}"></td>
                                             <td>
                                                 <input type="number" th:value="${item.soLuong}" class="form-control soLuong" min="1" >
                                             </td>
-                                            <td class="thanhTien" th:text="${item.getMaSanPham().donGia * item.soLuong}"></td>
+                                            <td class="thanhTien currency" th:text="${item.getMaSanPham().donGia * item.soLuong}"></td>
                                             <td>
                                                 <button class="btn btn-danger xoaMatHang"  th:value="${item.id}">Xóa</button>
                                             </td>
@@ -333,7 +333,7 @@
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label for="tongTien">Tổng tiền</label>
-                                        <input type="number" th:value="${order.tongTien}" class="form-control" name="tongTien" id="tongTien" readonly>
+                                        <input type="text" th:value="${order.tongTien}" class="form-control currency" name="tongTien" id="tongTien" readonly>
                                     </div>
                                 </div>
                             </form>
@@ -612,6 +612,7 @@
            var trangThai = $('#maTrangThai').val();
            $('#trangThai option[value='+trangThai+']').attr('selected','selected');
 
+           // formatCurrency()
 
         });
     </script>
